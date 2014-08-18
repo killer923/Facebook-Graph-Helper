@@ -2,7 +2,7 @@ package com.killer923.fb.model;
 
 public class Facebook
 {
-	private String ssoToken;
+	private String accessToken;
 	private boolean isLongTerm;
 	private FacebookVersion version;
 	private String applicationId;
@@ -18,19 +18,19 @@ public class Facebook
 	}
 	public String getApplicationSecret()
 	{
-		return "ERROR!!! Application Secret cannot be revealed.";
+		return applicationSecret;
 	}
 	public void setApplicationSecret(String applicationSecret)
 	{
 		this.applicationSecret = applicationSecret;
 	}
-	public String getSsoToken()
+	public String getAccessToken()
 	{
-		return ssoToken;
+		return accessToken;
 	}
-	public void setSsoToken(String ssoToken)
+	public void setAccessToken(String accessToken)
 	{
-		this.ssoToken = ssoToken;
+		this.accessToken = accessToken;
 	}
 	public boolean isLongTerm()
 	{
