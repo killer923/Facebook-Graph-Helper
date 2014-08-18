@@ -72,8 +72,6 @@
 		</plugins>
 	</build>
 
-
-
 	<dependencies>
 		<dependency>
 			<groupId>com.killer923.dataFetcher</groupId>
@@ -100,30 +98,25 @@
 
 	<repositories>
 		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<id>com.killer923</id>
+			<name>killer Maven Repository</name>
+			<url>http://killer.heliohost.org/maven</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
 			<id>Maven2-Default-Repo</id>
 			<name>Maven Master Repository</name>
 			<url>http://repo1.maven.org/maven2</url>
 		</repository>
 		<repository>
-			<id>jboss</id>
-			<name>JBoss-Maven-Repo</name>
-			<!-- url>http://repository.jboss.org</url -->
-			<url>https://repository.jboss.org/nexus/content/groups/public</url>
-		</repository>
-		<repository>
 			<id>jCaptcha-oss-sonatype</id>
 			<name>Maven Repository for JCaptcha</name>
 			<url>http://oss.sonatype.org/content/groups/sourceforge/</url>
-		</repository>
-		<!-- Adding repository to override the deprecated repository settings in 
-			gilead and jboss-parent (cms-web) -->
-		<!-- The best way is to create a mirror in settings.xml. Adding here to 
-			save every one to modify local settings.xml -->
-		<repository>
-			<id>repository.jboss.org</id>
-			<name>JBoss-Maven-Repo</name>
-			<!-- url>http://repository.jboss.org</url -->
-			<url>https://repository.jboss.org/nexus/content/groups/public</url>
 		</repository>
 		<repository>
 			<id>com.springsource.repository.bundles.release</id>
@@ -136,44 +129,16 @@
 			<url>http://repository.springsource.com/maven/bundles/external</url>
 		</repository>
 		<repository>
-			<id>net.sf.gilead</id>
-			<name>GWT Gilead Release Repository</name>
-			<url>https://gilead.svn.sourceforge.net/svnroot/gilead/gilead/maven-repo/</url>
-		</repository>
-		<repository>
-			<id>smartgwt</id>
-			<name>Smart GWT Maven2 Repository</name>
-			<url>http://www.smartclient.com/maven2</url>
-		</repository>
-
-		<repository>
 			<id>jahia</id>
-			<name>Repository for SQL SErver driver</name>
+			<name>Repository for SQL Server driver</name>
 			<url>http://maven.jahia.org/maven2</url>
-		</repository>
-		<repository>
-			<id>gwt2swf</id>
-			<name>Sonatype Maven Public Repository</name>
-			<url>http://mvn.collide.info/content/groups/public/</url>
 		</repository>
 		<repository>
 			<id>kanboard.kenai.com</id>
 			<name>Maven Repository for gwt dnd</name>
 			<url>http://kanboard.kenai.com/maven2</url>
 		</repository>
-		<repository>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<id>com.killer923</id>
-			<name>killer Maven Repository</name>
-			<url>http://killer.heliohost.org/maven</url>
-			<layout>default</layout>
-		</repository>
 	</repositories>
-
 
 	<developers>
 		<developer>
@@ -193,6 +158,5 @@
 			</properties>
 		</developer>
 	</developers>
-
 
 </project>
