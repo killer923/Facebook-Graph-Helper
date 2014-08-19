@@ -130,8 +130,8 @@ public class FacebookGraphService implements FacebookService
 	private String generateUrl(String requestedUrl) throws UnsupportedEncodingException{
 		StringBuilder newUrl = new StringBuilder(fb.getVersion().getBaseGraphUrl());
 		newUrl.append(URLEncoder.encode(requestedUrl, "UTF-8"));
-		String[] parametericUrl=requestedUrl.split("?");
-		if(parametericUrl.length==0)
+		String[] parametericUrl=requestedUrl.split("\\?");
+		if(parametericUrl.length==1)
 		{// there are no get parameters set
 			newUrl.append("?access_token=");
 		}
