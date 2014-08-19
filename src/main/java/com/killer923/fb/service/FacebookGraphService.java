@@ -85,13 +85,7 @@ public class FacebookGraphService implements FacebookService
 	public LinkedHashMap getUrl(String url) throws ResponseException, JsonParseException, JsonMappingException, IOException
 	{
 		//make url proper
-		try {
-			url=fb.getVersion().getBaseGraphUrl()+url;
-			url=URLEncoder.encode(url, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			//out fault
-			throw new UnexpectedException("unexpected exception: did we stop using utf-8 encoding??");
-		}
+		url = generateUrl(url);
 		
 		//make the request to fetch content
 		ResponseWrapper response=httpRequestDispatcher.sendGETRequest(url, null);
@@ -111,13 +105,7 @@ public class FacebookGraphService implements FacebookService
 	public LinkedHashMap postToUrl(String url,RequestEntity postContent,Integer timeout) throws ResponseException, JsonParseException, JsonMappingException, IOException
 	{
 		//make url proper
-		try {
-			url=fb.getVersion().getBaseGraphUrl()+url;
-			url=URLEncoder.encode(url, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			//out fault
-			throw new UnexpectedException("unexpected exception: did we stop using utf-8 encoding??");
-		}
+		url = generateUrl(url);
 		
 		if(timeout==null)
 		{
@@ -137,5 +125,25 @@ public class FacebookGraphService implements FacebookService
 		LinkedHashMap receivedContent = (LinkedHashMap) objectMapper.readValue(recievedJson,Object.class);
 		
 		return receivedContent;
+	}
+	
+	private String generateUrl(String requestedUrl) throws UnsupportedEncodingException{
+		StringBuilder newUrl = new StringBuilder(fb.getVersion().getBaseGraphUrl());
+		newUrl.append(URLEncoder.encode(requestedUrl, "UTF-8"));
+		String[] parametericUrl=requestedUrl.split("?");
+		if(parametericUrl.length==0)
+		{// there are no get parameters set
+			newUrl.append("?access_token=");
+		}
+		else if(parametericUrl[1].isEmpty())
+		{// '?' exists but no fields set
+			newUrl.append("access_token=");
+		}
+		else
+		{//parameters exist
+			newUrl.append("&access_token=");
+		}
+		newUrl.append(fb.getAccessToken());
+		return newUrl.toString();
 	}
 }
