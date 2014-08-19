@@ -24,6 +24,11 @@ public class FacebookGraphService implements FacebookService
 	private RequestDispatcher httpRequestDispatcher;
 	private ObjectMapper objectMapper;
 	
+	public FacebookGraphService()
+	{
+		objectMapper=new ObjectMapper();
+	}
+	
 	public Facebook getFb()
 	{
 		return fb;
@@ -42,6 +47,16 @@ public class FacebookGraphService implements FacebookService
 	public void setHttpRequestDispatcher(RequestDispatcher httpRequestDispatcher)
 	{
 		this.httpRequestDispatcher = httpRequestDispatcher;
+	}
+
+	public ObjectMapper getObjectMapper()
+	{
+		return objectMapper;
+	}
+
+	public void setObjectMapper(ObjectMapper objectMapper)
+	{
+		this.objectMapper = objectMapper;
 	}
 
 	/**
