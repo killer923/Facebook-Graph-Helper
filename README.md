@@ -3,12 +3,44 @@ Facebook-Graph-Helper
 
 Helps in  fetching and posting using Facebook Graph API
 
-
 This API is now in working condition.
 
-To Add
-=============
-Directly download and compile using maven on your system.
+To use :
+=====================
+
+Directly adding jar:
+============
+You can download the jar file from http://killer.heliohost.org/maven/com/killer923/dataFetcher/Facebook-Graph-Helper/1.0-SNAPSHOT/Facebook-Graph-Helper-1.0-SNAPSHOT.jar
+and add it to your build path.
+
+Maven:
+============
+In pom.xml of your project, <br>
+Add dependency
+
+	<dependencies> 
+		<dependency>
+			<groupId>com.killer923.dataFetcher</groupId>
+			<artifactId>Facebook-Graph-Helper</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+Add repository 
+
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<id>com.killer923</id>
+			<name>killer Maven Repository</name>
+			<url>http://killer.heliohost.org/maven</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
 SAMPLE
 ============
