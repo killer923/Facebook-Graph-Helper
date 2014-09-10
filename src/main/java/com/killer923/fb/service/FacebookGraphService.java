@@ -2,12 +2,10 @@ package com.killer923.fb.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.rmi.UnexpectedException;
 import java.util.LinkedHashMap;
 
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.RequestEntity;
+import org.apache.http.HttpEntity;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -81,10 +79,13 @@ public class FacebookGraphService implements FacebookService
 		url.append(fb.getApplicationId());
 		
 		//make the request to fb servers
-		ResponseWrapper response=httpRequestDispatcher.sendGETRequest(url.toString(), null);
-		if(response.getStatusCode()!=HttpStatus.SC_OK)
+		ResponseWrapper response = null;
+		try{
+			response=httpRequestDispatcher.sendGETRequest(url.toString(), null);
+		}catch(ResponseException e)
 		{
-			throw new ResponseException("Error making the API call. Http Status returned is : "+response.getStatusCode());
+			System.out.println("Error making request");
+			e.printStackTrace();
 		}
 		
 		//get the data from the received content
@@ -103,10 +104,13 @@ public class FacebookGraphService implements FacebookService
 		url = generateUrl(url);
 		
 		//make the request to fetch content
-		ResponseWrapper response=httpRequestDispatcher.sendGETRequest(url, null);
-		if(response.getStatusCode()!=HttpStatus.SC_OK)
+		ResponseWrapper response = null;
+		try{
+			response=httpRequestDispatcher.sendGETRequest(url, null);
+		}catch(ResponseException e)
 		{
-			throw new ResponseException("Error making the API call. Http Status returned is : "+response.getStatusCode());
+			System.out.println("Error making request");
+			e.printStackTrace();
 		}
 		
 		//convert the content to required type
@@ -117,7 +121,7 @@ public class FacebookGraphService implements FacebookService
 		return receivedContent;
 	}
 	
-	public LinkedHashMap postToUrl(String url,RequestEntity postContent,Integer timeout) throws ResponseException, JsonParseException, JsonMappingException, IOException
+	public LinkedHashMap postToUrl(String url,HttpEntity postContent,Integer timeout) throws ResponseException, JsonParseException, JsonMappingException, IOException
 	{
 		//make url proper
 		url = generateUrl(url);
@@ -128,10 +132,13 @@ public class FacebookGraphService implements FacebookService
 		}
 		
 		//make the request to fetch content
-		ResponseWrapper response=httpRequestDispatcher.sendPOSTRequest(url, postContent, null, timeout);
-		if(response.getStatusCode()!=HttpStatus.SC_OK)
+		ResponseWrapper response = null;
+		try{
+			response=httpRequestDispatcher.sendPOSTRequest(url, postContent, null, timeout);
+		}catch(ResponseException e)
 		{
-			throw new ResponseException("Error making the API call. Http Status returned is : "+response.getStatusCode());
+			System.out.println("Error making request");
+			e.printStackTrace();
 		}
 		
 		//convert the content to required type
