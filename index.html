@@ -1,0 +1,84 @@
+<html>
+<head> <title>Go Simple with Facebook Graph</title></head>
+<body>
+<p>Helps in  fetching and posting using Facebook Graph API</p>
+
+<p>This API is now in working condition.</p>
+
+<h1><a id="user-content-to-use-" class="anchor" href="#to-use-" aria-hidden="true"><span class="octicon octicon-link"></span></a>To use :</h1>
+
+<h1><a id="user-content-directly-adding-jar" class="anchor" href="#directly-adding-jar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Directly adding jar:</h1>
+
+<p>You can download the jar file from <a href="http://killer.heliohost.org/maven/com/killer923/dataFetcher/Facebook-Graph-Helper/1.0-SNAPSHOT/Facebook-Graph-Helper-1.0-SNAPSHOT.jar">http://killer.heliohost.org/maven/com/killer923/dataFetcher/Facebook-Graph-Helper/1.0-SNAPSHOT/Facebook-Graph-Helper-1.0-SNAPSHOT.jar</a>
+and add it to your build path.</p>
+
+<h1><a id="user-content-maven" class="anchor" href="#maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven:</h1>
+
+<p>In pom.xml of your project, <br>
+Add dependency</p>
+
+<pre><code>&lt;dependencies&gt; 
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.killer923.dataFetcher&lt;/groupId&gt;
+        &lt;artifactId&gt;Facebook-Graph-Helper&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+
+<p>Add repository </p>
+
+<pre><code>&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;updatePolicy&gt;always&lt;/updatePolicy&gt;
+            &lt;checksumPolicy&gt;fail&lt;/checksumPolicy&gt;
+        &lt;/releases&gt;
+        &lt;id&gt;com.killer923&lt;/id&gt;
+        &lt;name&gt;killer Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://killer.heliohost.org/maven&lt;/url&gt;
+        &lt;layout&gt;default&lt;/layout&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+</code></pre>
+
+<h1><a id="user-content-sample" class="anchor" href="#sample" aria-hidden="true"><span class="octicon octicon-link"></span></a>SAMPLE</h1>
+
+<pre>package main;
+
+import java.util.LinkedHashMap;
+import com.killer923.dataFetcher.net.http.HttpRequestDispatcher;
+import com.killer923.fb.model.Facebook;
+import com.killer923.fb.model.FacebookVersion;
+import com.killer923.fb.service.FacebookGraphService;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        //setup
+        FacebookGraphService service = new FacebookGraphService();
+        Facebook fb = new Facebook();
+        fb.setApplicationId("");
+        fb.setAccessToken("");
+        fb.setVersion(FacebookVersion.unversionsed);
+        HttpRequestDispatcher httpRequestDispatcher = new HttpRequestDispatcher();
+        service.setFb(fb);
+        service.setHttpRequestDispatcher(httpRequestDispatcher);
+
+        //test
+        try{
+        LinkedHashMap me =service.getUrl("me?fields=id,name");
+        System.out.println(me);
+        LinkedHashMap friends = service.getUrl("me/friends");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
+</pre>
+</body>
+</html>
